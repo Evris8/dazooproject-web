@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> DazooFutsal26 </title>
         <link rel="icon" href="pics/DZL 26 (8).ico" type="image/x-icon">
         <link rel="stylesheet" href="style2.css">
@@ -19,13 +19,14 @@
                 <i class="fa fa-times" onclick="hidemenu()"></i>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
-                    <li><a href="Blog.html">NEWS</a></li>
+                    <li><a href="Blog.html">STATS</a></li>      
                     <li><a href="index 2.html">ABOUT US</a></li>
+                    <li><a href="schedule.html">SCHEDULE</a></li>
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showmenu()"></i>
         </nav>
-    <h1>NEWS</h1>
+    <h1>STATS</h1>
     </section>
 
     <section class="blog-content">
@@ -66,11 +67,11 @@
                         <span>2</span>
                 </div>
                 </a>
-                <h3>RESULTS</h3>
+                <h3>RESULTS TODAY</h3>
                  <div class="match-card">
         <div class="match-header">
             <div class="match-tournament">DazooFutsal26</div>
-            <div class="match-status">PLAYED</div>
+            <div class="match-status">UPCOMING</div>
         </div>
         <div class="match-content">
             <div class="team team--home">
@@ -98,12 +99,12 @@
     <div class="match-card">
         <div class="match-header">
             <div class="match-tournament">DazooFutsal26</div>
-            <div class="match-status">PLAYED</div>
+            <div class="match-status">UPCOMING</div>
         </div>
         <div class="match-content">
             <div class="team team--home">
                 
-                <img src="teams/CP ependites.jpg" alt="Home Team Logo" class="team-logo">
+                <img src="teams/CP Ependites.jpg" alt="Home Team Logo" class="team-logo">
                 <h2 class="team-name">CP EPENDITES</h2>
             </div>
             <div class="match-details">
@@ -130,6 +131,9 @@
 
 
     </section>
+
+   <h3>STANDINGS</h3>
+  <div id="standings" class="standings"></div>
 
 
 
@@ -166,8 +170,151 @@
 
 
     </section>
-    </body>
 
+
+    <script src="data/teams.js"></script>
+    <script src="data/matches.js"></script>
+
+
+    <script>
+function calculateStandings() {
+    const table = {};
+
+    for (let id in teams) {
+        table[id] = {
+            id,
+            name: teams[id].name,
+            logo: teams[id].logo,
+            P: 0, W: 0, D: 0, L: 0,
+            GF: 0, GA: 0, Pts: 0
+        };
+    }
+
+    matches.forEach(m => {
+    if (m.homeGoals === null || m.awayGoals === null) return;
+
+        const home = table[m.home];
+        const away = table[m.away];
+
+        home.P++; away.P++;
+        home.GF += m.homeGoals;
+        home.GA += m.awayGoals;
+        away.GF += m.awayGoals;
+        away.GA += m.homeGoals;
+
+        if (m.homeGoals > m.awayGoals) {
+            home.W++; home.Pts += 3;
+            away.L++;
+        } else if (m.homeGoals < m.awayGoals) {
+            away.W++; away.Pts += 3;
+            home.L++;
+        } else {
+            home.D++; away.D++;
+            home.Pts++; away.Pts++;
+        }
+    });
+
+    return Object.values(table).sort(
+        (a, b) => b.Pts - a.Pts || (b.GF - b.GA) - (a.GF - a.GA)
+    );
+}
+
+function renderStandings() {
+    const standings = document.getElementById("standings");
+    const data = calculateStandings();
+
+    standings.innerHTML = `
+       <div class="standings-row standings-header">
+    <span>#</span>
+    <span>Team</span>
+    <span>P</span>
+    <span>W</span>
+    <span>D</span>
+    <span>L</span>
+    <span>GD</span>
+    <span>Pts</span>
+</div>
+
+    `;
+
+    data.forEach((team, i) => {
+        standings.innerHTML += `
+<a href="teamsdata/${team.id}.html" class="standings-row">
+    <span>${i + 1}</span>
+
+    <div class="standings-team">
+        <img src="${team.logo}" class="standings-logo">
+        <span class="standings-name">${team.name}</span>
+    </div>
+
+    <span>${team.P}</span>
+    <span>${team.W}</span>
+    <span>${team.D}</span>
+    <span>${team.L}</span>
+    <span>${team.GF - team.GA}</span>
+    <span>${team.Pts}</span>
+</a>
+`;
+
+
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderStandings();
+});
+</script>
+
+<script>
+function renderSchedule() {
+    const container = document.getElementById("schedule");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    matches.forEach(m => {
+        const home = teams[m.home];
+        const away = teams[m.away];
+
+        const played = m.homeGoals !== null && m.awayGoals !== null;
+
+        container.innerHTML += `
+        <div class="schedule-card">
+            <div class="schedule-header">
+                <span>${m.date} | ${m.time}</span>
+                <span>${played ? "FINAL" : "UPCOMING"}</span>
+            </div>
+
+            <div class="schedule-match">
+                <div class="schedule-team">
+                    <img src="${home.logo}" class="schedule-logo">
+                    <span>${home.name}</span>
+                </div>
+
+                ${
+                    played
+                    ? `<div class="schedule-score">${m.homeGoals} - ${m.awayGoals}</div>`
+                    : `<div class="schedule-upcoming">VS</div>`
+                }
+
+                <div class="schedule-team">
+                    <span>${away.name}</span>
+                    <img src="${away.logo}" class="schedule-logo">
+                </div>
+            </div>
+        </div>
+        `;
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderSchedule();
+});
+</script>
+
+
+
+    </body>
 
 
 
