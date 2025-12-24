@@ -15,7 +15,7 @@ const teams = {
 
     "cp-ependites": {
         name: "CP EPENDITES",
-        logo: "teams/CP Ependites.jpg",
+        logo: "teams/CP ependites.jpg",
         squad: [
             "Alexis",
             "Fotis Nishiotis",
@@ -117,4 +117,5 @@ const teams = {
             "Stavros Kokkinos"
     ]
 }
+
 }
