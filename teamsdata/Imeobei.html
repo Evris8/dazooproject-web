@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PRATZ</title>
+    <link rel="stylesheet" href="../style2.css">
+</head>
+<body>
+
+<section class="player-details">
+    <div class="team-page">
+        <div class="player-card" id="teamCard"></div>
+        <div class="player-card squad-card" id="squadCard"></div>
+    </div>
+</section>
+
+
+<script src="../data/teams.js"></script>
+<script src="../data/matches.js"></script>
+
+<script>
+const teamId = "Imeobei"; // CHANGE PER TEAM
+const team = teams[teamId];
+
+let played = 0;
+let wins = 0;
+let goalsFor = 0;
+let goalsAgainst = 0;
+
+matches.forEach(match => {
+    if (match.homeGoals === null || match.awayGoals === null) return;
+
+    if (match.home === teamId || match.away === teamId) {
+        played++;
+
+        const isHome = match.home === teamId;
+        const scored = isHome ? match.homeGoals : match.awayGoals;
+        const conceded = isHome ? match.awayGoals : match.homeGoals;
+
+        goalsFor += scored;
+        goalsAgainst += conceded;
+
+        if (scored > conceded) wins++;
+    }
+});
+
+// Avoid division by zero
+const winPercentage = played ? ((wins / played) * 100).toFixed(1) : "0.0";
+const avgScored = played ? (goalsFor / played).toFixed(2) : "0.00";
+const avgConceded = played ? (goalsAgainst / played).toFixed(2) : "0.00";
+
+document.getElementById("teamCard").innerHTML = `
+    
+    <img src="../${team.logo}" width="90">
+    <h2>${team.name}</h2>
+
+    <div class="stats-grid">
+        <div class="stat">
+            <span class="stat-number">${winPercentage}%</span>
+            <span class="stat-label">Win %</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">${avgScored}</span>
+            <span class="stat-label">Goals Scored Avg</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">${avgConceded}</span>
+            <span class="stat-label">Goals Conceded Avg</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">${played}</span>
+            <span class="stat-label">Matches Played</span>
+        </div>
+    </div>
+
+    <a href="../Blog.html" class="back-btn">← Back</a>
+`;
+</script>
+<script>
+const squadContainer = document.getElementById("squadCard");
+
+if (team.squad && team.squad.length > 0) {
+    squadContainer.innerHTML = `
+        <h3>Squad</h3>
+        <ul class="squad-list">
+            ${team.squad.map(player => `<li>${player}</li>`).join("")}
+        </ul>
+    `;
+} else {
+    squadContainer.innerHTML = `
+        <h3>Squad</h3>
+        <p>No squad available</p>
+    `;
+}
+</script>
+
+
+
+</body>
+</html>

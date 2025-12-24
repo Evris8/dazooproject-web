@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> DazooFutsal26 </title>
+        <link rel="icon" href="pics/DZL 26 (8).ico" type="image/x-icon">
+        <link rel="stylesheet" href="style2.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" >
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=BBH+Hegarty&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <section class="sub-header2">
+        <nav>
+        <a href="index.html"><img src="pics/football (4).png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hidemenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="Blog.html">STATS</a></li>      
+                    <li><a href="index 2.html">ABOUT US</a></li>
+                    <li><a href="schedule.html">SCHEDULE</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showmenu()"></i>
+        </nav>
+    <h1>SCHEDULE</h1>
+</section>
+
+
+<section class="blog-content">
+    <div id="schedule"></div>
+</section>
+
+
+<section class="footer">
+    <h4>DAZOO26</h4>
+    <p>This is the tournament you have been waiting for<br>so don’t forget to smile</p>
+</section>
+
+
+<script src="data/teams.js"></script>
+<script src="data/matches.js"></script>
+
+
+<script>
+
+function renderSchedule() {
+    const container = document.getElementById("schedule");
+    container.innerHTML = "";
+
+    let currentRound = null;
+
+    matches.forEach(match => {
+        const home = teams[match.home];
+        const away = teams[match.away];
+        const played = match.homeGoals !== null && match.awayGoals !== null;
+
+        // NEW ROUND TITLE
+        if (match.round !== currentRound) {
+            currentRound = match.round;
+            container.innerHTML += `
+                <h3 style="margin:20px 0 10px">Round ${currentRound}</h3>
+            `;
+        }
+
+        container.innerHTML += `
+        <div class="schedule-card">
+            <div class="schedule-top">
+                <span>${match.date}</span>
+                <span>${match.time}</span>
+                <span class="${played ? 'status-final' : 'status-upcoming'}">
+                    ${played ? 'FINAL' : 'UPCOMING'}
+                </span>
+            </div>
+
+            <div class="schedule-main">
+                <div class="schedule-team">
+                    <img src="${home.logo}">
+                    <span>${home.name}</span>
+                </div>
+
+                ${
+                    played
+                    ? `<div class="schedule-score">${match.homeGoals} - ${match.awayGoals}</div>`
+                    : `<div class="schedule-vs">VS</div>`
+                }
+
+                <div class="schedule-team right">
+                    <span>${away.name}</span>
+                    <img src="${away.logo}">
+                </div>
+            </div>
+        </div>
+        `;
+    });
+}
+
+document.addEventListener("DOMContentLoaded", renderSchedule);
+</script>
+
+
+document.addEventListener("DOMContentLoaded", renderSchedule);
+</script>
+<script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showmenu(){
+            navLinks.style.right= "0";
+        }
+
+        function hidemenu(){
+            navLinks.style.right= "-200px";
+        }
+</script>
+</body>
+</html>
