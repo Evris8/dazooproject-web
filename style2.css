@@ -19,11 +19,7 @@ nav{
     justify-content: space-between;
     align-items: center;
 }
-nav img{
-    width: 150px;
-    background: transparent; 
-    
-}
+
 .nav-links{
     flex:1;
     text-align: right;
@@ -54,46 +50,101 @@ nav img{
 .nav-links ul li:hover:after{
     width: 100%;
 }
-.text-box{
+.text-box {
     width: 90%;
+    max-width: 800px;
     color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     text-align: center;
-
 }
-.text-box h1{
-    font-size: 52px;
+
+.text-box h1 {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+.text-box h1 span {
+    color: #f44336; /* your brand red */
+}
+.text-box h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #f44336;
+    margin: 14px auto 0;
+    border-radius: 10px;
+}
+
+
+
+.text-box p {
+    font-size: 18px;
     font-weight: 600;
-    
+    color: #ddd;
+    letter-spacing: 1.5px;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
-.text-box p{
-    margin: 10px 0 40px;
-    font-size: 24px;
-    color: #fff;
+@media (max-width: 768px) {
+    .text-box h1 {
+        font-size: 42px;
+        letter-spacing: 2px;
+    }
+
+    .text-box p {
+        font-size: 15px;
+    }
 }
 
-.hero-btn{
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #fff;
+.section-subtitle {
+    display: block;
+    text-align: center;
     font-size: 13px;
-    background: transparent;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.course h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
     position: relative;
-    cursor: pointer;
-    padding: 5px;
 }
-.hero-btn:hover{
-    border: 1px solid #f44336;
-    background-color: #f44336;
-    transition: 1s;
+.course h1::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: #f44336;
+    margin: 16px auto 0;
+    border-radius: 10px;
 }
+
+
 nav .fa{
     display: none;
 }
+.icons i {
+    font-size: 22px;
+    margin: 0 10px;
+    color: #c22424;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.icons i:hover {
+    color: #d40000;
+}
+
 
 
 
@@ -153,15 +204,16 @@ p{
     display: flex;
     justify-content: space-between;
 }
-.course-col{
+.course-col {
     flex-basis: 31%;
-    background:#fff3f3 ;
-    border-radius: 10px;
-    margin-bottom: 5%;
-    padding: 20 px 12px;
-    box-sizing: border-box;
-    transition: 0.5s;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.3s;
 }
+
 h3{
     font-size: 35px;
     text-align: center;
@@ -171,12 +223,53 @@ h3{
 .course-col:hover{
     box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
 }
+.course-icon {
+    font-size: 42px;
+    color: #d40000;
+    margin-bottom: 14px;
+}
+
+.course-col h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.course-col p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.course-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #d40000;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.course-btn:hover {
+    background: #b80000;
+}
+
 
 @media(max-width:700px){
     .row{
         flex-direction: column;
     }
+    .course-col {
+        margin-bottom: 20px;
+    }
+
+    .course-icon {
+        font-size: 36px;
+    }
 }
+
 
 /*-------gia to footer------*/
 .footer{
@@ -204,10 +297,14 @@ h3{
 
 
 .about-us {
-    width: 80%;
-    margin: auto;
-    padding: 80px 0 50px 0;
+    width: 85%;
+    margin: 60px auto;
+    padding: 60px 0;
+    background: linear-gradient(120deg, #f9f9f9, #fff);
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
 }
+
 
 
 .row {
@@ -245,13 +342,37 @@ h3{
     font-size: 16px;
     color: #333;
 }
-
-
-.about-us {
-    background: linear-gradient(120deg, #f9f9f9, #fff);
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+.about-badge {
+    display: inline-block;
+    background: #d40000;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
 }
+
+.about-text {
+    max-width: 420px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.about-col img {
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.about-caption {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-top: 8px;
+}
+
 
 
 /*--------gia na eni kalitera sto kinito------*/
@@ -280,19 +401,87 @@ h3{
         font-size: 15px;
 }
 }
+@media (max-width: 768px) {
+    .about-badge {
+        margin: 0 auto 12px;
+        display: block;
+        text-align: center;
+    }
+
+    .about-text {
+        margin: auto;
+    }
+}
 
 
 
 /*------ gia to blog page-------*/
-.sub-header2{
-    height: 50vh;
+.sub-header2 {
+    height: 45vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("pics/DSC_6573.JPG");
-    background-position: center ;
+    background-image:
+        linear-gradient(rgba(4,9,30,0.75), rgba(4,9,30,0.85)),
+        url("pics/DSC_6573.JPG");
+    background-position: center;
     background-size: cover;
-    text-align: center;
     color: #fff;
+    position: relative;
 }
+/* ===== STATS HEADER HERO ===== */
+
+.stats-hero {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.nav-icon {
+    font-size: 26px;
+    color: #ffffff;
+}
+
+
+.stats-hero h1 {
+    font-size: 38px;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+}
+
+.stats-hero p {
+    font-size: 14px;
+    color: #ddd;
+    letter-spacing: 1px;
+}
+@media (max-width: 768px) {
+    .sub-header2 {
+        height: 40vh;
+    }
+
+    .stats-icon {
+       font-size: 48px;
+    }
+
+    .stats-hero h1 {
+        font-size: 32px;
+    }
+
+    .stats-hero p {
+        font-size: 13px;
+    }
+}
+.stats-hero h1::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #a24b4b;
+    margin: 10px auto 0;
+    border-radius: 10px;
+}
+
+
 
 .blog-content{
     width: 80%;
@@ -951,5 +1140,10 @@ h3{
 
 .squad-list li:last-child {
     border-bottom: none;
+}
+.scorer-item span:last-child {
+    color: #f44336;
+    font-weight: 800;
+    font-size: 15px;
 }
 
