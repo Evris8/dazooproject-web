@@ -1,27 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5QPTTR5S');</script>
-<!-- End Google Tag Manager -->
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0D7NQBLMB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P0D7NQBLMB');
-</script>
     <title>TSIOU</title>
     <link rel="stylesheet" href="../style2.css">
 </head>
 <body>
-<!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QPTTR5S" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) -->
+
 <section class="player-details">
     <div class="team-page">
         <div class="player-card" id="teamCard"></div>
@@ -98,7 +82,7 @@ if (team.squad && team.squad.length > 0) {
     squadContainer.innerHTML = `
         <h3>Squad</h3>
         <ul class="squad-list">
-            ${team.squad.map(player => `<li>${player}</li>`).join("")}
+            ${team.squad.map(player => `<li><a href="../players/${encodeURIComponent(player)}.html" class="squad-player-link">${player}</a></li>`).join("")}
         </ul>
     `;
 } else {
@@ -113,5 +97,4 @@ if (team.squad && team.squad.length > 0) {
 
 </body>
 </html>
-
 
