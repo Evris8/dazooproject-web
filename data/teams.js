@@ -62,7 +62,7 @@ const teams = {
         "Konstantinos Perikleous",
         "Stratos Voniatis",
         "Stephanos Atamyan",
-        "Aris Kyriakidis",
+        "Aris Kyriakides",
         "Mouaz A"
     ]
 }   ,
@@ -119,3 +119,4 @@ const teams = {
 }
 
 }
+
