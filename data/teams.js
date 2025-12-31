@@ -47,7 +47,7 @@ const teams = {
     squad: [
         "Sokratis Papadopoulos",
         "Neofytos Pratziotis",
-        "Markos Mizanas",
+        "Markos Milwnas",
         "Louis Athanasiou",
         "Kyriakos Theodosiou"
         
@@ -57,9 +57,9 @@ const teams = {
     name: "PUNISHERS",
     logo: "teams/punishers.jpg",
     squad: [
-        "Kyriacos Evripidoou",
+        "Kyriakos Evripidou",
         "Christos Nicolaou",
-        "Konsatntionos Pericleous",
+        "Konstantinos Perikleous",
         "Stratos Voniatis",
         "Stephanos Atamyan",
         "Aris Kyriakidis",
