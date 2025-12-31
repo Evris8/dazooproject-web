@@ -1141,6 +1141,7 @@ h3{
 .squad-list li:last-child {
     border-bottom: none;
 }
+
 /* Squad player links */
 .squad-player-link {
     color: #333;
@@ -1181,5 +1182,4 @@ h3{
     font-weight: 800;
     font-size: 15px;
 }
-
 
