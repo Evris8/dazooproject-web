@@ -1141,9 +1141,45 @@ h3{
 .squad-list li:last-child {
     border-bottom: none;
 }
+/* Squad player links */
+.squad-player-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.squad-player-link:hover {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(255, 107, 107, 0.1));
+    color: #f44336;
+    transform: translateX(5px);
+    text-decoration: none;
+}
+
+.squad-player-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(45deg, #f44336, #ff6b6b);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.squad-player-link:hover::before {
+    transform: scaleY(1);
+}
 .scorer-item span:last-child {
     color: #f44336;
     font-weight: 800;
     font-size: 15px;
 }
+
 
