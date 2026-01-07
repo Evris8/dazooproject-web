@@ -92,8 +92,8 @@ const matches = [
     away: "punishers-fc",
     date: "2026-1-7",
     time: "09:00",
-    homeGoals: null,
-    awayGoals: null
+    homeGoals: 1,
+    awayGoals: 2
 },
 {
     id: 10,
@@ -122,8 +122,8 @@ const matches = [
     away: "Haramball",
     date: "2026-1-7",
     time: "10:55",
-    homeGoals: null,
-    awayGoals: null
+    homeGoals: 8,
+    awayGoals: 0
 },
 
 /* ================= ROUND 4 ================= */
