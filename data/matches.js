@@ -134,8 +134,8 @@ const matches = [
     away: "aura-fc",
     date: "2026-1-9",
     time: "09:00",
-    homeGoals: null,
-    awayGoals: null
+    homeGoals: 5,
+    awayGoals: 1
 },
 {
     id: 14,
@@ -379,3 +379,4 @@ const matches = [
 }
 
 ];
+
