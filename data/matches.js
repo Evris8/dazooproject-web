@@ -216,8 +216,8 @@ const matches = [
     round: 6,
     home: "Haramball",
     away: "molwn-lave",
-    date: "TBA",
-    time: "TBA",
+    date: "2026-1-20",
+    time: "9:00",
     homeGoals: null,
     awayGoals: null
 },
